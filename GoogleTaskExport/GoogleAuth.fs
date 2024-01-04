@@ -1,4 +1,4 @@
-﻿module Technetium.Google.GoogleAuth
+﻿module GoogleTaskExport.GoogleAuth
 
 open System.IO
 open System.Text.Json
