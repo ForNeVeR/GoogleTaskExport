@@ -23,8 +23,10 @@ To use GoogleTaskExport, you'll have to register an application with Google and 
 Use the following shell command:
 
 ```console
-$ dotnet run --project GoogleTaskExport -- [json|print] <username> <path to the JSON credential file>
+$ dotnet run --project GoogleTaskExport -- [json|print] <userName> <path to the JSON credential file>
 ```
+
+Here, `<userName>` is the user email, e.g. `example@gmail.com`.
 
 This command will fetch all the stored Google Tasks (including the completed ones, but omitting the deleted ones) and output them in the specified format. 
 
