@@ -1,8 +1,7 @@
-﻿// TODO: Export tasks to JSON
-
-open System
+﻿open System
 open System.Text
 
+open System.Text.Json
 open Google.Apis.Tasks.v1.Data
 
 open GoogleTaskExport
@@ -10,7 +9,7 @@ open GoogleTaskExport.GoogleTasks
 
 let private getAuthToken userName clientSecretFile = task {
     let! clientSecrets = GoogleAuth.readClientSecretFile clientSecretFile
-    let! authToken = GoogleAuth.getAuthenticationToken userName [| GoogleTasks.TasksScope |] clientSecrets
+    let! authToken = GoogleAuth.getAuthenticationToken userName [| TasksScope |] clientSecrets
     return authToken.AccessToken
 }
 
@@ -65,15 +64,41 @@ let private printTasks userName clientSecretFile = task {
             printTask task
 }
 
+let private streamJson userName clientSecretFile = task {
+    let! authToken = getAuthToken userName clientSecretFile
+    use service = new TaskService(authToken)
+    let! taskLists = service.GetAllTaskLists()
+    let! tasksPerList =
+        taskLists
+        |> Seq.map(fun tl -> task {
+            let! tasks = service.GetAllTasks tl.Id
+            return struct(tl, tasks)
+        })
+        |> System.Threading.Tasks.Task.WhenAll
+    let result =
+        tasksPerList
+        |> Seq.map(fun struct(tl, tasks) ->
+            {| TaskList = tl
+               Tasks = tasks |}
+        )
+
+    Console.OutputEncoding <- Encoding.UTF8
+    use stream = Console.OpenStandardOutput()
+    do! JsonSerializer.SerializeAsync(stream, result)
+}
+
 let private runSynchronously(task: System.Threading.Tasks.Task) =
     task.GetAwaiter().GetResult()
 
 let private printUsage() =
-    printfn "Accepted arguments: <userName> <clientSecretFile>"
+    printfn "Accepted arguments: [print|json] <userName> <clientSecretFile>"
 
 [<EntryPoint>]
 let main: string[] -> int = function
-    | [| userName; clientSecretFile |] ->
+    | [| "json"; userName; clientSecretFile |] ->
+        runSynchronously <| streamJson userName clientSecretFile
+        0
+    | [| "print"; userName; clientSecretFile |] ->
         runSynchronously <| printTasks userName clientSecretFile
         0
     | args ->
