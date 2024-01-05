@@ -1,4 +1,4 @@
-GoogleTaskExport [![Status Zero][status-zero]][andivionian-status-classifier]
+GoogleTaskExport [![Status Aquana][status-aquana]][andivionian-status-classifier]
 ================
 
 This is a program to export the [Google Tasks][google-tasks] data from your Google account to a JSON file, or just print them in the terminal.
@@ -39,9 +39,9 @@ Documentation
 - [License (MIT)][docs.license]
 - [Code of Conduct (adopted from the Contributor Covenant)][docs.code-of-conduct]
 
-[andivionian-status-classifier]: https://github.com/ForNeVeR/andivionian-status-classifier#status-zero-
+[andivionian-status-classifier]: https://github.com/ForNeVeR/andivionian-status-classifier#status-aquana-
 [docs.code-of-conduct]: CODE_OF_CONDUCT.md
 [docs.contributing]: CONTRIBUTING.md
 [docs.license]: LICENSE.md
 [google-tasks]: https://support.google.com/tasks/answer/7675772?hl=en
-[status-zero]: https://img.shields.io/badge/status-zero-lightgrey.svg
+[status-aquana]: https://img.shields.io/badge/status-aquana-yellowgreen.svg
