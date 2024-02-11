@@ -8,7 +8,7 @@ open Google.Apis.Tasks.v1
 open Google.Apis.Tasks.v1.Data
 
 [<Literal>]
-let TasksScope = "https://www.googleapis.com/auth/tasks"
+let TasksScope = "https://www.googleapis.com/auth/tasks.readonly"
 
 [<Literal>]
 let MaxEntitiesPerRequest = 100

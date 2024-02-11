@@ -1,7 +1,7 @@
 GoogleTaskExport [![Status Aquana][status-aquana]][andivionian-status-classifier]
 ================
 
-This is a program to export the [Google Tasks][google-tasks] data from your Google account to a JSON file, or just print them in the terminal.
+This is a program to export the [Google Tasks][google.tasks] data from your Google account to a JSON file, or just print them in the terminal.
 
 Usage
 -----
@@ -9,12 +9,13 @@ Usage
 ### Client Secret
 To use GoogleTaskExport, you'll have to register an application with Google and obtain a client secret file.
 
-1. Create a Google Cloud Project.
+1. Create a [Google Cloud Project][google.console].
 2. On the **Enabled APIs & services** page, choose **Enable APIs and Services**, search for **Google Tasks API** and choose **Enable**.
 3. On the **Google Tasks API** page, click **Create Credentials**.
 4. On the **Which API are you using?** step, choose **User data**.
 5. On the **OAuth Consent Screen** step, configure it whatever you want.
-6. On the **Scopes** step, choose Google Tasks API (the non-readonly variant), `https://www.googleapis.com/auth/tasks`.
+    - One detail to remember is not to use the `Google` name in the application name. [See here][stack-overflow.google-auth] for more details.
+6. On the **Scopes** step, choose Google Tasks API (the one with the `.readonly` suffix), `https://www.googleapis.com/auth/tasks.readonly`.
 7. On the **OAuth Client ID** step, choose **Desktop app**. Specify the name as `GoogleTaskExport`.
 8. Download the resulting JSON file.
 9. Remember to add the users you want to use the application on the **OAuth consent screen** page, in the **Test users** list.
@@ -45,5 +46,7 @@ Documentation
 [docs.code-of-conduct]: CODE_OF_CONDUCT.md
 [docs.contributing]: CONTRIBUTING.md
 [docs.license]: LICENSE.md
-[google-tasks]: https://support.google.com/tasks/answer/7675772?hl=en
+[google.console]: https://console.cloud.google.com/
+[google.tasks]: https://support.google.com/tasks/answer/7675772?hl=en
+[stack-overflow.google-auth]: https://stackoverflow.com/q/63948396
 [status-aquana]: https://img.shields.io/badge/status-aquana-yellowgreen.svg
