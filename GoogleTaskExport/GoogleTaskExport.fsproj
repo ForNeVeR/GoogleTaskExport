@@ -13,7 +13,7 @@
     
     <ItemGroup>
         <PackageReference Include="Google.Apis.Auth" Version="1.72.0" />
-        <PackageReference Include="Google.Apis.Tasks.v1" Version="1.69.0.3790" />
+        <PackageReference Include="Google.Apis.Tasks.v1" Version="1.74.0.3958" />
     </ItemGroup>
 
 </Project>
